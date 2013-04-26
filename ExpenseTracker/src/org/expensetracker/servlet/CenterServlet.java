@@ -1,38 +1,43 @@
 package org.expensetracker.servlet;
 
 import java.io.IOException;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.expensetracker.util.DatabaseUtil;
+
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class CenterServlet
  */
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet(urlPatterns="/CenterServlet", loadOnStartup=1)
+public class CenterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private DatabaseUtil databaseUtil = null;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public CenterServlet() {
         super();
     }
 
+    @Override
+    public void init() throws ServletException {
+    	super.init();
+    	databaseUtil = DatabaseUtil.getInstance();    	
+    }
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String page = request.getParameter("page");
-		if (page.equals("home")) {
-			request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
-		} else if (page.equals("aboutus")) {
-			request.getRequestDispatcher("html/aboutus.html").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
-		}
 	}
 
 	/**
@@ -40,5 +45,4 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
-
 }

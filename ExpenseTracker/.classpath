@@ -18,5 +18,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-core.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-jdbc.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-tx.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

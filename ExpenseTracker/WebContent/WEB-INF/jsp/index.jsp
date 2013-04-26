@@ -20,7 +20,7 @@
 			</p>
 		</div>
 		<div id="login">
-			<form id="register" action="login">
+			<form id="register" action="CreateAccount">
 				<div class="loginBox">Don't have an account?</div>
 				<div class="loginBox" id="account">
 					<input type="hidden" name="page" value="createAccount" />

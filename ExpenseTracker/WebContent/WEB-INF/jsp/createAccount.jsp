@@ -53,9 +53,9 @@
 				<p>Location</p>
 				<p>
 					<select class="fieldSize">
-						<option value="select">India</option>
-						<option value="male">USA</option>
-						<option value="female">UK</option>
+						<option value="India">India</option>
+						<option value="USA">USA</option>
+						<option value="UK">UK</option>
 					</select>
 				</p>
 				<p>
