@@ -1,0 +1,83 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	font-family:Arial, Helvetica, sans-serif;	
+	//background-color:#AFEAAA;
+}
+
+#wrap {
+	width:1100px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#header img {
+	width:200px;
+	float:left;
+}
+
+#header span {
+	display:block;
+	margin-left:250px;
+}
+
+#heading {
+	font-size:36px;	
+	font-weight:bold;
+	color:#FF6600;
+}
+
+#headingnote {
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-style:italic;
+	margin:10px;
+	color:#00A452;
+}
+
+#navigation {
+	margin-top:0px;
+	padding:0px;
+}
+
+#navigation p {
+	clear:left;
+  	background-color:#025928;
+	margin-top:50px;
+	padding:10px 0px;
+}
+
+
+#navigation p a{
+	color:#FFFFFF;
+	display:block;
+	display:inline;
+	text-decoration:none;
+	padding:10px 20px;
+	margin:0px;
+	font-size:14px;	
+	font-weight:bold;
+}
+
+#navigation p a:hover{
+	//background-color: #398a00;
+	color:#a0a0a0;
+}
+
+#footer p{
+	background-color:#025928;
+	padding:5px;
+	margin-bottom:0px;
+	font-size:10px;
+	text-align:center;	
+	color:#FFF;
+}
+
+#footer{
+	clear:right;
+}
+
+.textField{
+	width: 250px;
+	padding: 5px;
+}

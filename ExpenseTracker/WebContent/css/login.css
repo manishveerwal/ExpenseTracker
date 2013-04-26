@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* CSS Document */
+
+#login {
+	float:right;
+	margin:20px 20px 20px 0px;
+	padding:20px;
+	background-color: #e0e0e0;
+}
+
+#login p img {
+	margin-left:130px;	
+}
+
+.loginBox span{
+	font-size:20px;	
+}
+
+.loginField{
+	font-size: 16px;
+	font-weight:bold;
+}
+
+.loginBox {
+	margin: 20px 0px; 
+}
+
+#account {
+	padding-bottom:20px;
+}
+
+#register p:first-child{
+	font-weight:bold;
+}
+
+#register p:first-child{
+	font-weight:bold;
+}
+
+#createAccountButton{
+	background-color: #ae2817;
+}
+
+#createAccountButton:hover{
+	border-color: #992a1b;
+}

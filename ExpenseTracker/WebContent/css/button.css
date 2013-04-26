@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+
+.button {
+	font-size:16px;
+	border-width:thin;
+	border-bottom-style:solid;
+	border-radius:5px;
+	background-color:#4d90fe;
+	color:#FFFFFF;
+	padding: 5px 10px;
+}
+
+.button:hover {
+	border-color: #2f5bb7;
+}

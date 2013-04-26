@@ -1,0 +1,24 @@
+#account {
+	float:right;
+	margin: 20px 20px 20px 0px;
+	padding:20px;
+	background-color: #E0E0E0;
+}
+
+#account p img {
+	margin-left:130px;	
+}
+
+#account p span{
+	font-size:24px;	
+}
+
+#footer {
+	clear: right;
+	margin-top: 350px;
+}
+
+.fieldSize {
+	width: 300px;
+	padding: 5px;
+}

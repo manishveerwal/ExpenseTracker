@@ -1,0 +1,27 @@
+#categoryTable{
+	border-collapse: collapse;
+}
+
+#categoryTable th{
+	background-color: #2d6200;
+	padding: 5px 10px;
+}
+
+#categoryTable td a{
+	display: block;
+	padding: 5px 10px;
+	text-decoration: none;
+	color: #000000;
+}
+
+#categoryTable td a:hover{
+	background-color: #3079ED;
+}
+
+#category{
+	float: left;
+}
+
+#footer{
+	clear: both;
+}

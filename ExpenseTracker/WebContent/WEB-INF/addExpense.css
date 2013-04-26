@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+
+//addExpense
+
+table, td, th {
+	border: 1px solid black;
+}
+
+#content {
+	padding:10px 0px 0px 10px;
+}
+
+#formTable {
+	border-collapse:collapse;
+}
+
+.button {
+	margin-top:10px;	
+}
+
+form p {
+	margin-top:0;	
+}
+
+#hiddenRow {
+	visibility:hidden;
+}
