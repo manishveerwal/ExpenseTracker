@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/createAccount.css">
 <link rel="stylesheet" href="css/button.css">
-<title>Manage Your Expenses</title>
+<title>Log Your Expenses</title>
 </head>
 <body>
 	<div id="wrap">
@@ -21,7 +22,7 @@
 			</p>
 		</div>
 		<div id="account">
-			<form id="accountForm" action="">
+			<form id="accountForm" action="" method="post">
 				<p>First Name</p>
 				<p>
 					<input name="firstName" type="text" class="fieldSize" />
@@ -45,7 +46,7 @@
 				<p>Gender</p>
 				<p>
 					<select class="fieldSize">
-						<option value="select">Select</option>
+						<option value="select">....</option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
 					</select>
@@ -53,9 +54,10 @@
 				<p>Location</p>
 				<p>
 					<select class="fieldSize">
-						<option value="India">India</option>
-						<option value="USA">USA</option>
-						<option value="UK">UK</option>
+						<option>....</option>
+						<c:forEach items="${locations}" var="location">
+							<option value="${location}">${location}</option>
+						</c:forEach>
 					</select>
 				</p>
 				<p>
