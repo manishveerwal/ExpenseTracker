@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/common.css">
 <title>Manage Your Expenses</title>
 </head>
-<body>
+<body style="color:red;">
 	<div id="wrap">
 		<jsp:include page="header.jsp"></jsp:include>
 		<div id="navigation">
@@ -20,6 +20,7 @@
 		</div>
 		<div id="errorPage">
 			<p style="font-size: 24px; color: red;">Error!!!</p>
+			<p> ${param.error} </p>
 		</div>
 		<jsp:include page="footer.jsp"></jsp:include>
 	</div>

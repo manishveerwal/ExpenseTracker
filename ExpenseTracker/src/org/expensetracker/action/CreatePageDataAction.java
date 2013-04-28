@@ -9,8 +9,9 @@ import org.expensetracker.util.DatabaseUtil;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
-public class CreateAction implements Action {
-	String query = "select location from location";
+public class CreatePageDataAction implements Action {
+	protected String query = "select location from location";
+	protected static String GET_LOCATION_ID = "SELECT LOCATION_ID FROM LOCATION WHERE LOCATION=?";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {

@@ -22,7 +22,7 @@
 			</p>
 		</div>
 		<div id="account">
-			<form id="accountForm" action="" method="post">
+			<form id="accountForm" action="CreateAccount?action=create" method="post">
 				<p>First Name</p>
 				<p>
 					<input name="firstName" type="text" class="fieldSize" />
@@ -37,15 +37,15 @@
 				</p>
 				<p>Password</p>
 				<p>
-					<input name="email" type="password" class="fieldSize" />
+					<input name="password" type="password" class="fieldSize" />
 				</p>
 				<p>Confirm Password</p>
 				<p>
-					<input name="email" type="password" class="fieldSize" />
+					<input name="password1" type="password" class="fieldSize" />
 				</p>
 				<p>Gender</p>
 				<p>
-					<select class="fieldSize">
+					<select class="fieldSize" name="gender">
 						<option value="select">....</option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
@@ -53,7 +53,7 @@
 				</p>
 				<p>Location</p>
 				<p>
-					<select class="fieldSize">
+					<select class="fieldSize" name="location">
 						<option>....</option>
 						<c:forEach items="${locations}" var="location">
 							<option value="${location}">${location}</option>
