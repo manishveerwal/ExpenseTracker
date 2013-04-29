@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.expensetracker.action.Action;
+import org.expensetracker.action.LoginAction;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -31,12 +34,13 @@ public class LoginServlet extends HttpServlet {
 	private void handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
-		if (page.equals("home")) {
+		if ("home".equals(page)) {
 			request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
-		} else if (page.equals("aboutus")) {
+		} else if ("aboutus".equals(page)) {
 			request.getRequestDispatcher("html/aboutus.html").forward(request, response);
 		} else if ("login".equals(request.getParameter("action"))) {
-			
+			Action action = new LoginAction();
+			action.execute(request, response);
 		} else {
 			request.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
 		}
