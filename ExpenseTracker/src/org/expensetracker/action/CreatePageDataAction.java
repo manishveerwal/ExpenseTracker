@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
 public class CreatePageDataAction implements Action {
-	protected String query = "select location from location";
+	protected String query = "SELECT LOCATION FROM LOCATION";
 	protected static String GET_LOCATION_ID = "SELECT LOCATION_ID FROM LOCATION WHERE LOCATION=?";
 
 	@Override

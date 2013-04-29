@@ -37,6 +37,7 @@
 				</p>
 				<p>Password</p>
 				<p>
+					<div style="color:red;"> ${errorMessage} </div>
 					<input name="password" type="password" class="fieldSize" />
 				</p>
 				<p>Confirm Password</p>

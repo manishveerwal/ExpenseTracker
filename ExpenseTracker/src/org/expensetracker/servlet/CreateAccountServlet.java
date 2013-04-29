@@ -35,11 +35,12 @@ public class CreateAccountServlet extends HttpServlet {
 	private void handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		Action action = null;
-		if ("create".equals(request.getParameter("action"))) {
+		String errorMessage = (String) request.getAttribute("errorMessage");
+		if (errorMessage == null && "create".equals(request.getParameter("action"))) {
 			action = new CreateAccountAction();
 			action.execute(request, response);
 			if (!response.isCommitted()) {
-				request.getRequestDispatcher("login?page=home").forward(
+				request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(
 						request, response);
 			}
 		} else {

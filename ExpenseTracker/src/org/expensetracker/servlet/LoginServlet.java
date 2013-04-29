@@ -25,11 +25,18 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		handleRequest(request, response);
+	}
+
+	private void handleRequest(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
 		if (page.equals("home")) {
 			request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
 		} else if (page.equals("aboutus")) {
 			request.getRequestDispatcher("html/aboutus.html").forward(request, response);
+		} else if ("login".equals(request.getParameter("action"))) {
+			
 		} else {
 			request.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
 		}
@@ -39,6 +46,6 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		handleRequest(request, response);
 	}
-
 }

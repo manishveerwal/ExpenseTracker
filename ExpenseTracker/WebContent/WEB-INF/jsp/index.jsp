@@ -31,7 +31,7 @@
 				<span>Sign in</span> <img
 					src="image/38px-Gold_Currency_Symbols.svg.png" width="20" />
 			</div>
-			<form id="loginform" action="">
+			<form id="loginform" action="login?action=login">
 				<div class="loginBox"><div class="loginField">Email</div>
 				<div>
 					<input name="username" type="text" class="textField"/>

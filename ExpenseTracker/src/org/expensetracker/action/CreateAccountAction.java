@@ -1,7 +1,6 @@
 package org.expensetracker.action;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +19,23 @@ public class CreateAccountAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		String password1 = request.getParameter("password1");
 		String first = request.getParameter("firstName");
 		String last = request.getParameter("lastName");
 		String gender = request.getParameter("gender");
 		String location = request.getParameter("location");
+		
+		if (!password.equals(password1)) {
+			try {
+				request.setAttribute("errorMessage", "Password does not MATCH!!!");
+				request.getRequestDispatcher("CreateAccount").forward(request, response);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (ServletException e) {
+				e.printStackTrace();
+			}
+			return;
+		}
 		
 		try {
 			SimpleJdbcTemplate simpleJdbcTemplate = new SimpleJdbcTemplate(DatabaseUtil.getInstance().getDataSource());
