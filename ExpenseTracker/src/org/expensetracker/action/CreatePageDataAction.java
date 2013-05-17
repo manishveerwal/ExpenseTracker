@@ -5,7 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.expensetracker.util.DatabaseUtil;
+import org.expensetracker.util.ApplicationUtil;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
@@ -15,8 +16,8 @@ public class CreatePageDataAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		SimpleJdbcTemplate simpleJdbcTemplate = new SimpleJdbcTemplate(DatabaseUtil.getInstance().getDataSource());
-		List<Location> locations = simpleJdbcTemplate.query(query, ParameterizedBeanPropertyRowMapper.newInstance(Location.class));
+		JdbcTemplate jdbcTemplate = ApplicationUtil.getInstance().getMyJdbcDao().getJdbcTemplate();
+		List<Location> locations = jdbcTemplate.query(query, ParameterizedBeanPropertyRowMapper.newInstance(Location.class));
 		request.setAttribute("locations", locations);
 	}
 }

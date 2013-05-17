@@ -6,7 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.expensetracker.util.DatabaseUtil;
+import org.expensetracker.util.ApplicationUtil;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
 public class LoginAction implements Action {
@@ -26,9 +27,8 @@ public class LoginAction implements Action {
 				errorMsg = "Password Field is empty.";
 				forwardURL = "/WEB-INF/jsp/index.jsp";
 			} else {
-				SimpleJdbcTemplate simpleJdbcTemplate = new SimpleJdbcTemplate(
-						DatabaseUtil.getInstance().getDataSource());
-				String passwordDB = simpleJdbcTemplate.queryForObject(
+				JdbcTemplate jdbcTemplate = ApplicationUtil.getInstance().getMyJdbcDao().getJdbcTemplate();
+				String passwordDB = jdbcTemplate.queryForObject(
 						GET_USER_DETAILS, String.class, email);
 
 				if (passwordDB.equals(password)) {

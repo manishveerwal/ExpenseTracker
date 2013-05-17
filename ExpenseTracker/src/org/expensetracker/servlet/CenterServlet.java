@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.expensetracker.util.DatabaseUtil;
+import org.expensetracker.util.ApplicationUtil;
 
 /**
  * Servlet implementation class CenterServlet
@@ -19,7 +19,7 @@ import org.expensetracker.util.DatabaseUtil;
 @WebServlet(urlPatterns="/CenterServlet", loadOnStartup=1)
 public class CenterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DatabaseUtil databaseUtil = null;
+	private ApplicationUtil databaseUtil = null;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,7 +31,7 @@ public class CenterServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
     	super.init();
-    	databaseUtil = DatabaseUtil.getInstance();    	
+    	databaseUtil = ApplicationUtil.getInstance();    	
     }
     
 	/**
