@@ -16,7 +16,7 @@
 		<jsp:include page="header.jsp"></jsp:include>
 		<div id="navigation">
 			<p>
-				<a href="login?page=home">Home</a><a href="login?page=aboutus">About
+				<a href="home">Home</a><a href="aboutus">About
 					us</a>
 			</p>
 		</div>
