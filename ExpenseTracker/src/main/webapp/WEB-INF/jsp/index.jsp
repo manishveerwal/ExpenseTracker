@@ -55,18 +55,19 @@
 			<form:form id="loginForm" action="logon" method="post" modelAttribute="logonBean">
 				<div class="loginBox">
 					<div class="loginField">Email</div>
+					<div><form:errors path="email" cssClass="error"/></div>
 					<div>
-						<form:errors path="email" />
-						<form:input path="email" />
+						<form:input path="email" cssClass="textField"/>
 					</div>
 				</div>
 				<div class="loginBox">
 					<div class="loginField">Password</div>
+					<div><form:errors path="password" cssClass="error"/></div>
 					<div>
-						<form:errors path="password"/>
-						<form:input path="password" />
+						<form:input path="password" type="password" cssClass="textField"/>
 					</div>
 				</div>
+				<div class="error">${errorMsg}</div>
 				<div id="button" class="loginBox">
 					<input class="button" type="submit" value="Sign in" />
 				</div>
