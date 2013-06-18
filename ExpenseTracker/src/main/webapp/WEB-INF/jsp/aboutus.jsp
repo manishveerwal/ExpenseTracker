@@ -1,17 +1,18 @@
 <!DOCTYPE HTML>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="<c:url value="/resources/css/common.css" />">
 <title>Manage Your Expenses</title>
 </head>
 <div id="wrap">
 	<div id="header">
-    	<p><img src="image/income-and-expense-chart.gif"/> <span id="heading">Expense Manager</span> <span id="headingnote">Manage expenses and increase your savings</span></p>
+    	<p><img src="<c:url value="/resources/image/income-and-expense-chart.gif" />"/> <span id="heading">Expense Manager</span> <span id="headingnote">Manage expenses and increase your savings</span></p>
         <p><p>
     </div>
     <div id="navigation">
-    	<p><a href="login?page=home">Home</a><a href="login?page=aboutus">About us</a></p>
+    	<p><a href="home">Home</a><a href="aboutus">About us</a></p>
     </div>
     <div id="content">
     	<h3>About Us</h3>
