@@ -35,7 +35,12 @@ public class LogonController {
 			return "home";
 		} else {
 			model.addAttribute("errorMsg", "Invalid Email or Password.");
-			return "redirect:index";
+			return "index";
 		}
+	}
+	
+	@RequestMapping(value="/logon", method=RequestMethod.GET)
+	public String redirectToHomePage(){
+		return "redirect:/home";
 	}
 }
