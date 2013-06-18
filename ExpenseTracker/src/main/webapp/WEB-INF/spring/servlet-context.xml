@@ -19,6 +19,4 @@
 		<beans:property name="suffix" value=".jsp"></beans:property>
 	</beans:bean>
 	
-	<beans:import resource="spring-jdbc.xml"/>
-
 </beans:beans>
