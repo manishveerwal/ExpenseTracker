@@ -16,7 +16,6 @@ import org.expensetracker.util.ApplicationUtil;
 /**
  * Servlet implementation class CenterServlet
  */
-@WebServlet(urlPatterns="/CenterServlet", loadOnStartup=1)
 public class CenterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ApplicationUtil databaseUtil = null;
