@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.expense.spring.mvc.javabeans.LogonBean;
 import org.expensetracker.dao.MyJdbcDao;
-import org.expensetracker.util.ApplicationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
