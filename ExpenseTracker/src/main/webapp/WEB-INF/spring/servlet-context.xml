@@ -9,12 +9,10 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<mvc:annotation-driven />
+	
 	<context:component-scan base-package="org.expense.spring.mvc.controller" />
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-	
-	<!-- Imports user-defined @Controller beans that process client requests -->
-<!-- 	<beans:import resource="controllers.xml" /> -->
 	
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/jsp/"></beans:property>
