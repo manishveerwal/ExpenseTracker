@@ -22,11 +22,10 @@
 			</p>
 		</div>
 		<div id="login">
-			<form id="register" action="CreateAccount">
+			<form id="register" action="register">
 				<div class="loginBox">Don't have an account?</div>
 				<div class="loginBox" id="account">
-					<input type="hidden" name="page" value="createAccount" /> <input
-						id="createAccountButton" class="button" type="submit"
+					<input id="createAccountButton" class="button" type="submit"
 						value="Create an Account" />
 				</div>
 			</form>

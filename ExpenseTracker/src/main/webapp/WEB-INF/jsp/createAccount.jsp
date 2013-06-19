@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <meta charset="utf-8">
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/createAccount.css">
-<link rel="stylesheet" href="css/button.css">
+<link rel="stylesheet" href="/ExpenseTracker/resources/css/common.css">
+<link rel="stylesheet" href="/ExpenseTracker/resources/css/createAccount.css">
+<link rel="stylesheet" href="/ExpenseTracker/resources/css/button.css">
 <title>Log Your Expenses</title>
 </head>
 <body>
@@ -17,42 +19,48 @@
 		<jsp:include page="header.jsp"></jsp:include>
 		<div id="navigation">
 			<p>
-				<a href="login?page=home">Home</a><a href="login?page=aboutus">About
+				<a href="home">Home</a><a href="aboutus">About
 					us</a>
 			</p>
 		</div>
 		<div id="account">
-			<form id="accountForm" action="CreateAccount?action=create" method="post">
+			<form:form id="accountForm" action="processRegistration" method="post" modelAttribute="registrationFormBean">
 				<p>First Name</p>
 				<p>
-					<input name="firstName" type="text" class="fieldSize" />
+					<div><form:errors path="firstName" cssClass="error"/> </div>
+					<form:input path="firstName" cssClass="fieldSize"/>
 				</p>
 				<p>Last Name</p>
 				<p>
-					<input name="lastName" type="text" class="fieldSize" />
+					<div><form:errors path="lastName" cssClass="error"/> </div>
+					<form:input path="lastName" cssClass="fieldSize"/>
 				</p>
 				<p>Email</p>
 				<p>
-					<input name="email" type="text" class="fieldSize" />
+					<div><form:errors path="email" cssClass="error"/> </div>
+					<form:input path="email" cssClass="fieldSize"/>
 				</p>
 				<p>Password</p>
 				<p>
 					<div style="color:red;"> ${errorMessage} </div>
-					<input name="password" type="password" class="fieldSize" />
+					<div><form:errors path="password" cssClass="error"/> </div>
+					<form:input path="password" cssClass="fieldSize" type="password"/>
 				</p>
 				<p>Confirm Password</p>
 				<p>
-					<input name="password1" type="password" class="fieldSize" />
+					<form:input path="password1" cssClass="fieldSize" type="password"/>
 				</p>
 				<p>Gender</p>
+				<div><form:errors path="gender" cssClass="error"/> </div>
 				<p>
-					<select class="fieldSize" name="gender">
-						<option value="select">....</option>
+					<form:select path="gender">
+						<option>....</option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
-					</select>
+					</form:select>
 				</p>
 				<p>Location</p>
+				<div><form:errors path="location" cssClass="error"/> </div>
 				<p>
 					<select class="fieldSize" name="location">
 						<option>....</option>
@@ -62,13 +70,13 @@
 					</select>
 				</p>
 				<p>
-					<input type="submit" name="create" value="Create" id="create"
+					<input type="submit" name="create" value="Create Account" id="create"
 						class="button" />
 				</p>
-			</form>
+			</form:form>
 		</div>
 		<div id="content">
-			<img src="image/GraphExpense.JPG" width="600" height="400" />
+			<img src="/ExpenseTracker/resources/image/GraphExpense.JPG" width="600" height="400" />
 		</div>
 		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
