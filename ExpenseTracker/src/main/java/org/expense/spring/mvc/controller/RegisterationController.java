@@ -87,9 +87,9 @@ public class RegisterationController {
 	@RequestMapping(value="/checkEmailAvailability", method=RequestMethod.GET)
 	public @ResponseBody String checkEmailAvailability(@RequestParam String email){
 		JdbcTemplate jdbcTemplate = jdbcDao.getJdbcTemplate();
-		Integer id = jdbcTemplate.queryForObject(CHECK_EMAIL,
+		Integer count = jdbcTemplate.queryForObject(CHECK_EMAIL,
 				Integer.class, email);
-		if (id > 0) {
+		if (count > 0) {
 			return "false";
 		} else {
 			return "true";
