@@ -83,7 +83,7 @@
 					<select class="fieldSize" name="location">
 						<option>....</option>
 						<c:forEach items="${locations}" var="location">
-							<option value="${location}">${location}</option>
+							<option value="${location.location}">${location.location}</option>
 						</c:forEach>
 					</select>
 				</p>
