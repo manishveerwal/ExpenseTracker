@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.expense.spring.mvc.javabeans.Location;
 import org.expense.spring.mvc.javabeans.RegistrationFormBean;
 import org.expense.spring.mvc.validator.RegistrationFormBeanValidator;
-import org.expensetracker.action.Location;
 import org.expensetracker.dao.MyJdbcDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,7 +27,7 @@ public class RegisterationController {
 	protected String GET_USER_ID = "SELECT ID FROM USER_CREDENTIAL WHERE EMAIL=?";
 	protected String CHECK_EMAIL = "SELECT COUNT(*) FROM USER_CREDENTIAL WHERE EMAIL=?";
 	
-	protected String query = "SELECT LOCATION FROM LOCATION";
+	protected String GET_LOCATIONS = "SELECT LOCATION FROM LOCATION";
 	protected String GET_LOCATION_ID = "SELECT LOCATION_ID FROM LOCATION WHERE LOCATION=?";
 
 	@Autowired
@@ -45,7 +45,7 @@ public class RegisterationController {
 
 	public List<Location> getLocation() {
 		JdbcTemplate jdbcTemplate = jdbcDao.getJdbcTemplate();
-		List<Location> locations = jdbcTemplate.query(query, ParameterizedBeanPropertyRowMapper.newInstance(Location.class));
+		List<Location> locations = jdbcTemplate.query(GET_LOCATIONS, ParameterizedBeanPropertyRowMapper.newInstance(Location.class));
 		return locations;
 	}
 	
