@@ -8,5 +8,5 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 	
 	<!-- beans -->
 	<bean id="registrationFormBeanValidator" 
-	class="org.expense.spring.mvc.javabeans.validator.RegistrationFormBeanValidator"/>
+	class="org.expense.spring.mvc.validator.RegistrationFormBeanValidator"/>
 </beans>

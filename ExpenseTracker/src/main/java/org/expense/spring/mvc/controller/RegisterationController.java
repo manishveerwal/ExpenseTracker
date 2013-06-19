@@ -5,11 +5,9 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.expense.spring.mvc.javabeans.RegistrationFormBean;
-import org.expense.spring.mvc.javabeans.validator.RegistrationFormBeanValidator;
-import org.expensetracker.action.CreatePageDataAction;
+import org.expense.spring.mvc.validator.RegistrationFormBeanValidator;
 import org.expensetracker.action.Location;
 import org.expensetracker.dao.MyJdbcDao;
-import org.expensetracker.util.ApplicationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
@@ -18,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class RegisterationController {
@@ -25,6 +25,7 @@ public class RegisterationController {
 	protected String INSERT_CREDENTIAL = "INSERT INTO USER_CREDENTIAL(email, password) VALUES(?, ?)";
 	protected String UPDATE_DETAILS = "INSERT INTO USER_DETAILS(FIRSTNAME, LASTNAME, GENDER, LOCATION_ID, ID) VALUES(?, ?, ?, ?, ?)";
 	protected String GET_USER_ID = "SELECT ID FROM USER_CREDENTIAL WHERE EMAIL=?";
+	protected String CHECK_EMAIL = "SELECT COUNT(*) FROM USER_CREDENTIAL WHERE EMAIL=?";
 	
 	protected String query = "SELECT LOCATION FROM LOCATION";
 	protected String GET_LOCATION_ID = "SELECT LOCATION_ID FROM LOCATION WHERE LOCATION=?";
@@ -81,5 +82,17 @@ public class RegisterationController {
 	@RequestMapping(value={"/processRegistration"}, method=RequestMethod.GET)
 	public String redirectToRegistrationPage(){
 		return "redirect:/register";
+	}
+	
+	@RequestMapping(value="/checkEmailAvailability", method=RequestMethod.GET)
+	public @ResponseBody String checkEmailAvailability(@RequestParam String email){
+		JdbcTemplate jdbcTemplate = jdbcDao.getJdbcTemplate();
+		Integer id = jdbcTemplate.queryForObject(CHECK_EMAIL,
+				Integer.class, email);
+		if (id > 0) {
+			return "false";
+		} else {
+			return "true";
+		}
 	}
 }

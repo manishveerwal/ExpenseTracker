@@ -12,6 +12,24 @@
 <link rel="stylesheet" href="/ExpenseTracker/resources/css/common.css">
 <link rel="stylesheet" href="/ExpenseTracker/resources/css/createAccount.css">
 <link rel="stylesheet" href="/ExpenseTracker/resources/css/button.css">
+<script type="text/javascript" src="/ExpenseTracker/resources/jquery/jquery-2.0.2.js"></script>
+<script type="text/javascript">
+	$(document).ready(function (){
+		$("#email").blur(function(){
+			if($("#email").val() == ""){
+				$("#emailError").text("Please enter your email.");
+			} else {
+				$.getJSON("/ExpenseTracker/checkEmailAvailability?email="+$("#email").val(), function(available){
+					if(available == false){
+						$("#emailError").text("Your Email is Already Registered.");
+					} else {
+						$("#emailError").text("");
+					}
+				});
+			}
+		});
+	});
+</script>
 <title>Log Your Expenses</title>
 </head>
 <body>
@@ -37,7 +55,7 @@
 				</p>
 				<p>Email</p>
 				<p>
-					<div><form:errors path="email" cssClass="error"/> </div>
+					<div id="emailError" class="error"><form:errors path="email" cssClass="error"/> </div>
 					<form:input path="email" cssClass="fieldSize"/>
 				</p>
 				<p>Password</p>

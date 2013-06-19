@@ -1,4 +1,4 @@
-package org.expense.spring.mvc.javabeans.validator;
+package org.expense.spring.mvc.validator;
 
 import org.expense.spring.mvc.javabeans.RegistrationFormBean;
 import org.springframework.validation.Errors;
