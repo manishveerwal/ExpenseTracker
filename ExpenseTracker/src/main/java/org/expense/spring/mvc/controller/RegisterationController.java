@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.expense.spring.mvc.javabeans.Location;
 import org.expense.spring.mvc.javabeans.RegistrationFormBean;
+import org.expense.spring.mvc.model.EmailValidationJSON;
+import org.expense.spring.mvc.validator.EmailFieldValidator;
 import org.expense.spring.mvc.validator.RegistrationFormBeanValidator;
 import org.expensetracker.dao.MyJdbcDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,6 +41,9 @@ public class RegisterationController {
 	
 	@Autowired
 	private RegistrationFormBeanValidator registrationFormBeanValidator;
+	
+	@Autowired
+	private EmailFieldValidator emailFieldValidator;
 	
 	@RequestMapping("/register")
 	public String openRegistrationPage(Model model){
@@ -84,15 +93,24 @@ public class RegisterationController {
 		return "redirect:/register";
 	}
 	
-	@RequestMapping(value="/checkEmailAvailability", method=RequestMethod.GET)
-	public @ResponseBody String checkEmailAvailability(@RequestParam String email){
+	@RequestMapping(value="/checkEmailAvailability", method=RequestMethod.GET, produces="application/json")
+	public @ResponseBody EmailValidationJSON checkEmailAvailability(@RequestParam String email){
+		RegistrationFormBean registrationFormBean = new RegistrationFormBean();
+		registrationFormBean.setEmail(email);
+		
+		Errors errors = new BindException(registrationFormBean, "email");
+		emailFieldValidator.validate(email, errors);
+		if (errors.hasErrors()) {
+			return new EmailValidationJSON(false, errors.getFieldError("email").getDefaultMessage());
+		}
+		
 		JdbcTemplate jdbcTemplate = jdbcDao.getJdbcTemplate();
 		Integer count = jdbcTemplate.queryForObject(CHECK_EMAIL,
 				Integer.class, email);
 		if (count > 0) {
-			return "false";
+			return new EmailValidationJSON(false, "Your Email is Already Registered.");
 		} else {
-			return "true";
+			return new EmailValidationJSON(true, "");
 		}
 	}
 }
