@@ -6,6 +6,7 @@ import java.util.Locale;
 import javax.validation.Valid;
 
 import org.expense.aplication.dao.MyJdbcDao;
+import org.expense.application.util.MessageResouceBundleConstants;
 import org.expense.spring.mvc.javabeans.Location;
 import org.expense.spring.mvc.javabeans.RegistrationFormBean;
 import org.expense.spring.mvc.model.EmailValidationJSON;
@@ -111,7 +112,8 @@ public class RegisterationController {
 		Integer count = jdbcTemplate.queryForObject(CHECK_EMAIL,
 				Integer.class, email);
 		if (count > 0) {
-			return new EmailValidationJSON(false, getErrorMessage("validation.email.registered"));
+			return new EmailValidationJSON(false, 
+					getErrorMessage(MessageResouceBundleConstants.VALIDATION_EMAIL_REGISTERED));
 		} else {
 			return new EmailValidationJSON(true, "");
 		}

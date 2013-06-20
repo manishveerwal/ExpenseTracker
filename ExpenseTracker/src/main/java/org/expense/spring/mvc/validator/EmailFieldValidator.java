@@ -3,6 +3,7 @@ package org.expense.spring.mvc.validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.expense.application.util.MessageResouceBundleConstants;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -28,7 +29,7 @@ public class EmailFieldValidator implements Validator {
 		String email = (String) obj;
 		Matcher matcher = pattern.matcher(email);
 		if (!matcher.matches()) {
-			errors.rejectValue("email", "validation.email.invalid");
+			errors.rejectValue("email", MessageResouceBundleConstants.VALIDATION_EMAIL_INVALID);
 		}
 	}
 }
