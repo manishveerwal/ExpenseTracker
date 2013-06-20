@@ -19,9 +19,9 @@
 			if($("#email").val() == ""){
 				$("#emailError").text("Please enter your email.");
 			} else {
-				$.getJSON("/ExpenseTracker/checkEmailAvailability?email="+$("#email").val(), function(available){
-					if(available == false){
-						$("#emailError").text("Your Email is Already Registered.");
+				$.getJSON("/ExpenseTracker/checkEmailAvailability?email="+$("#email").val(), function(emailValidationJSON){
+					if (!emailValidationJSON.available) {
+						$("#emailError").text(emailValidationJSON.message);
 					} else {
 						$("#emailError").text("");
 					}
@@ -43,54 +43,48 @@
 		</div>
 		<div id="account">
 			<form:form id="accountForm" action="processRegistration" method="post" modelAttribute="registrationFormBean">
-				<p>First Name</p>
-				<p>
-					<div><form:errors path="firstName" cssClass="error"/> </div>
-					<form:input path="firstName" cssClass="fieldSize"/>
-				</p>
-				<p>Last Name</p>
-				<p>
-					<div><form:errors path="lastName" cssClass="error"/> </div>
-					<form:input path="lastName" cssClass="fieldSize"/>
-				</p>
-				<p>Email</p>
-				<p>
-					<div id="emailError" class="error"><form:errors path="email" cssClass="error"/> </div>
-					<form:input path="email" cssClass="fieldSize"/>
-				</p>
-				<p>Password</p>
-				<p>
-					<div style="color:red;"> ${errorMessage} </div>
-					<div><form:errors path="password" cssClass="error"/> </div>
-					<form:input path="password" cssClass="fieldSize" type="password"/>
-				</p>
-				<p>Confirm Password</p>
-				<p>
-					<form:input path="password1" cssClass="fieldSize" type="password"/>
-				</p>
-				<p>Gender</p>
+				<div id="fieldName">First Name</div>
+				<div><form:errors path="firstName" cssClass="error"/> </div>
+				<div><form:input path="firstName" cssClass="fieldSize"/></div>
+				
+				<div id="fieldName">Last Name</div>
+				<div><form:errors path="lastName" cssClass="error"/> </div>
+				<div><form:input path="lastName" cssClass="fieldSize"/></div>
+				
+				<div id="fieldName">Email</div>
+				<div id="emailError" class="error"><form:errors path="email" cssClass="error"/> </div>
+				<div><form:input path="email" cssClass="fieldSize"/></div>
+				
+				<div id="fieldName">Password</div>
+				<div style="color:red;"> ${errorMessage} </div>
+				<div><form:errors path="password" cssClass="error"/> </div>
+				<div><form:input path="password" cssClass="fieldSize" type="password"/></div>
+				
+				<div id="fieldName">Confirm Password</div>
+				<div><form:input path="password1" cssClass="fieldSize" type="password"/></div>
+				
+				<div id="fieldName">Gender</div>
 				<div><form:errors path="gender" cssClass="error"/> </div>
-				<p>
+				<div>
 					<form:select path="gender">
 						<option>....</option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
 					</form:select>
-				</p>
-				<p>Location</p>
+				</div>
+				
+				<div id="fieldName">Location</div>
 				<div><form:errors path="location" cssClass="error"/> </div>
-				<p>
+				<div>
 					<select class="fieldSize" name="location">
 						<option>....</option>
 						<c:forEach items="${locations}" var="location">
 							<option value="${location.location}">${location.location}</option>
 						</c:forEach>
 					</select>
-				</p>
-				<p>
-					<input type="submit" name="create" value="Create Account" id="create"
-						class="button" />
-				</p>
+				</div>	
+				
+				<div  id="fieldName"><input type="submit" name="create" value="Create Account" id="create" class="button" /></div>
 			</form:form>
 		</div>
 		<div id="content">
