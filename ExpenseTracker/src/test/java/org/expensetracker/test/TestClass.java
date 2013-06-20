@@ -1,6 +1,6 @@
 package org.expensetracker.test;
 
-import org.expensetracker.dao.MyJdbcDao;
+import org.expense.aplication.dao.MyJdbcDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

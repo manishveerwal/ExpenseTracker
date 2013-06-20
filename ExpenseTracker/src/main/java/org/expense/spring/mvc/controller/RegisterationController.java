@@ -5,12 +5,12 @@ import java.util.Locale;
 
 import javax.validation.Valid;
 
+import org.expense.aplication.dao.MyJdbcDao;
 import org.expense.spring.mvc.javabeans.Location;
 import org.expense.spring.mvc.javabeans.RegistrationFormBean;
 import org.expense.spring.mvc.model.EmailValidationJSON;
 import org.expense.spring.mvc.validator.EmailFieldValidator;
 import org.expense.spring.mvc.validator.RegistrationFormBeanValidator;
-import org.expensetracker.dao.MyJdbcDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -104,18 +104,21 @@ public class RegisterationController {
 		Errors errors = new BindException(registrationFormBean, "email");
 		emailFieldValidator.validate(email, errors);
 		if (errors.hasErrors()) {
-			return new EmailValidationJSON(false, errors.getFieldError("email").getDefaultMessage());
+			return new EmailValidationJSON(false, getErrorMessage(errors.getFieldError("email").getCode()));
 		}
-		
-		System.out.println("Messages " + messageSource.getMessage("email.name", null, Locale.ROOT));
 		
 		JdbcTemplate jdbcTemplate = jdbcDao.getJdbcTemplate();
 		Integer count = jdbcTemplate.queryForObject(CHECK_EMAIL,
 				Integer.class, email);
 		if (count > 0) {
-			return new EmailValidationJSON(false, "Your Email is Already Registered.");
+			return new EmailValidationJSON(false, getErrorMessage("validation.email.registered"));
 		} else {
 			return new EmailValidationJSON(true, "");
 		}
+	}
+
+	private String getErrorMessage(String code) {
+		return messageSource.getMessage(code, 
+				null, Locale.ROOT);
 	}
 }

@@ -2,8 +2,8 @@ package org.expense.spring.mvc.controller;
 
 import javax.validation.Valid;
 
+import org.expense.aplication.dao.MyJdbcDao;
 import org.expense.spring.mvc.javabeans.LogonBean;
-import org.expensetracker.dao.MyJdbcDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;

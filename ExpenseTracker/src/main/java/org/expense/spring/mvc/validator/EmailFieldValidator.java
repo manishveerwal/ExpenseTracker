@@ -28,7 +28,7 @@ public class EmailFieldValidator implements Validator {
 		String email = (String) obj;
 		Matcher matcher = pattern.matcher(email);
 		if (!matcher.matches()) {
-			errors.rejectValue("email", "", "Invalid Email Address.");
+			errors.rejectValue("email", "validation.email.invalid");
 		}
 	}
 }
