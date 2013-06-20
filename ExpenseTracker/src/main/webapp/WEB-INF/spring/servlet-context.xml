@@ -19,4 +19,7 @@
 		<beans:property name="suffix" value=".jsp"></beans:property>
 	</beans:bean>
 	
+	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basename" value="locale\messages" />
+	</beans:bean>
 </beans:beans>

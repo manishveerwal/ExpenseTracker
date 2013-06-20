@@ -1,10 +1,10 @@
 package org.expense.spring.mvc.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
-import org.apache.log4j.Logger;
 import org.expense.spring.mvc.javabeans.Location;
 import org.expense.spring.mvc.javabeans.RegistrationFormBean;
 import org.expense.spring.mvc.model.EmailValidationJSON;
@@ -12,6 +12,7 @@ import org.expense.spring.mvc.validator.EmailFieldValidator;
 import org.expense.spring.mvc.validator.RegistrationFormBeanValidator;
 import org.expensetracker.dao.MyJdbcDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +44,9 @@ public class RegisterationController {
 	
 	@Autowired
 	private EmailFieldValidator emailFieldValidator;
+	
+	@Autowired
+	private ResourceBundleMessageSource messageSource;
 	
 	@RequestMapping("/register")
 	public String openRegistrationPage(Model model){
@@ -103,6 +106,8 @@ public class RegisterationController {
 		if (errors.hasErrors()) {
 			return new EmailValidationJSON(false, errors.getFieldError("email").getDefaultMessage());
 		}
+		
+		System.out.println("Messages " + messageSource.getMessage("email.name", null, Locale.ROOT));
 		
 		JdbcTemplate jdbcTemplate = jdbcDao.getJdbcTemplate();
 		Integer count = jdbcTemplate.queryForObject(CHECK_EMAIL,
