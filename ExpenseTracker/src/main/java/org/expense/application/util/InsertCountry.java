@@ -1,4 +1,4 @@
-package org.expensetracker.util;
+package org.expense.application.util;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
