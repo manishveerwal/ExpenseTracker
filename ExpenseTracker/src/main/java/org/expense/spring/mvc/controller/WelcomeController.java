@@ -14,7 +14,6 @@ public class WelcomeController {
 	
 	@RequestMapping(value={"/", "/home"}, method=GET)
 	public String showWelcomePage(Model model){
-		
 		//add LogonBean for modelAttribute
 		model.addAttribute(new LogonBean());
 		return "index";
