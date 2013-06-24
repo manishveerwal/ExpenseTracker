@@ -33,24 +33,6 @@
 				<span>Sign in</span> <img
 					src="<c:url value="/resources/image/38px-Gold_Currency_Symbols.svg.png" />" width="20" />
 			</div>
-<%-- 			<form id="loginform" action="logon" method="post"> --%>
-<!-- 				<div class="loginBox"> -->
-<!-- 					<div class="loginField">Email</div> -->
-<!-- 					<div> -->
-<!-- 						<input name="email" type="text" class="textField" /> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="loginBox"> -->
-<!-- 					<div class="loginField">Password</div> -->
-<!-- 					<div> -->
-<!-- 						<input name="password" type="password" class="textField" /> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<%-- 				<div style="font-size:16px; color: red; font-weight: bold;">${errorMessage}</div> --%>
-<!-- 				<div id="button" class="loginBox"> -->
-<!-- 					<input class="button" type="submit" value="Sign in" /> -->
-<!-- 				</div> -->
-<%-- 			</form> --%>
 			<form:form id="loginForm" action="logon" method="post" modelAttribute="logonBean">
 				<div class="loginBox">
 					<div class="loginField">Email</div>
@@ -67,6 +49,7 @@
 					</div>
 				</div>
 				<div class="error">${errorMsg}</div>
+				<div><form:errors path="errorMsg" cssClass="error"/></div>
 				<div id="button" class="loginBox">
 					<input class="button" type="submit" value="Sign in" />
 				</div>

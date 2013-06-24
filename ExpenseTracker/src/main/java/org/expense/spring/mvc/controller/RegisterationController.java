@@ -37,7 +37,7 @@ public class RegisterationController {
 	protected String GET_LOCATIONS = "SELECT LOCATION FROM LOCATION";
 	protected String GET_LOCATION_ID = "SELECT LOCATION_ID FROM LOCATION WHERE LOCATION=?";
 
-	@Autowired
+//	@Autowired
 	private MyJdbcDao jdbcDao;
 	
 	@Autowired

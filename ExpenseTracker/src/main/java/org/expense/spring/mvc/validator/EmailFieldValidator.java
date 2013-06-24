@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 
 import org.expense.application.util.MessageResouceBundleConstants;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 public class EmailFieldValidator implements Validator {

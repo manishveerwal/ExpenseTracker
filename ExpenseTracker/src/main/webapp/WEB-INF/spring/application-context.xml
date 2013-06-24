@@ -10,4 +10,6 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 	<bean id="registrationFormBeanValidator" class="org.expense.spring.mvc.validator.RegistrationFormBeanValidator"/>
 	
 	<bean id="emailFieldValidator" class="org.expense.spring.mvc.validator.EmailFieldValidator"/>
+	
+	<bean id="passwordValidator" class="org.expense.spring.mvc.validator.PasswordValidator"/>
 </beans>

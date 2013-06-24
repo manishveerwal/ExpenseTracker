@@ -13,6 +13,10 @@ public class LogonBean {
 	@NotEmpty
 	private String password;
 	
+	private String passwordDB;
+	
+	private String errorMsg;
+	
 	public String getEmail() {
 		return email;
 	}
@@ -27,5 +31,21 @@ public class LogonBean {
 	
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getPasswordDB() {
+		return passwordDB;
+	}
+
+	public void setPasswordDB(String passwordDB) {
+		this.passwordDB = passwordDB;
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
 	}
 }
