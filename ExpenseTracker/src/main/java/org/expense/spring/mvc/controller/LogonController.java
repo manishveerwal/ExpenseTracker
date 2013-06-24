@@ -33,7 +33,7 @@ public class LogonController {
 		if (result.hasErrors()) {
 			return "index";
 		} else {
-			return "home";
+			return "dashboard";
 		}
 	}
 	

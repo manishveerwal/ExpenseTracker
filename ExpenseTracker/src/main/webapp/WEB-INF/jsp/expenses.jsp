@@ -1,23 +1,20 @@
 <!DOCTYPE HTML>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="common.css">
-<link rel="stylesheet" href="button.css">
-<link rel="stylesheet" href="expense.css">
+<link rel="stylesheet" href="/ExpenseTracker/resources/css/common.css">
+<link rel="stylesheet" href="/ExpenseTracker/resources/css/button.css">
+<link rel="stylesheet" href="/ExpenseTracker/resources/css/expense.css">
 <script src="expenselog.js"></script>
 <title>Log Your Expenses</title>
 </head>
 <div id="wrap">
-	<div id="header">
-    	<p><img src="image/income-and-expense-chart.gif"/> <span id="heading">Expense Manager</span> <span id="headingnote">Manage expenses and increase your savings</span></p>
-        <p><p>
-    </div>
-    <div id="navigation">
-    	<p>	<a href="home.html">Home</a><a href="expenses.html">Expense Log</a><a href="category.html">Category</a></p>
-    </div>
+	<jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page="navigation.jsp"></jsp:include>
     <div id="content">
-    	<form method="post" action="addExpense.html">
+    	<form method="post" action="addExpense">
     		<input id="addButton" class="button" type="submit" type="submit" value="Add Expenses" />
     	</form>
     	<table id="dataTable">
