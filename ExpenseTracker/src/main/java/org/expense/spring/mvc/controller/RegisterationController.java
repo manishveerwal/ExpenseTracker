@@ -26,14 +26,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class RegisterationController {
 	
-	protected String INSERT_CREDENTIAL = "INSERT INTO USER_CREDENTIAL(email, password) VALUES(?, ?)";
-	protected String UPDATE_DETAILS = "INSERT INTO USER_DETAILS(FIRSTNAME, LASTNAME, GENDER, LOCATION_ID, ID) VALUES(?, ?, ?, ?, ?)";
-	protected String GET_USER_ID = "SELECT ID FROM USER_CREDENTIAL WHERE EMAIL=?";
-	protected String CHECK_EMAIL = "SELECT COUNT(*) FROM USER_CREDENTIAL WHERE EMAIL=?";
-	
-	protected String GET_LOCATIONS = "SELECT LOCATION FROM LOCATION";
-	protected String GET_LOCATION_ID = "SELECT LOCATION_ID FROM LOCATION WHERE LOCATION=?";
-
 	@Autowired
 	private LocationDao locationDao;
 	
