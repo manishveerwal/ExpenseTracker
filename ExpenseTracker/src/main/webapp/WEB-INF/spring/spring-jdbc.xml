@@ -9,8 +9,4 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 	<!-- DataSource -->
 	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/ExpenseApp" resource-ref="true"/>
 	
-	<!-- beans -->
-<!-- 	<bean id="jdbcDao" class="org.expense.aplication.dao.MyJdbcDao"> -->
-<!-- 		<property name="dataSource" ref="dataSource" /> -->
-<!-- 	</bean> -->
 </beans>

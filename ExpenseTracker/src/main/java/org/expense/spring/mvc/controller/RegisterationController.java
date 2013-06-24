@@ -1,21 +1,18 @@
 package org.expense.spring.mvc.controller;
 
-import java.util.List;
 import java.util.Locale;
 
 import javax.validation.Valid;
 
-import org.expense.aplication.dao.MyJdbcDao;
+import org.expense.aplication.dao.LocationDao;
+import org.expense.aplication.dao.UserDao;
 import org.expense.application.util.MessageResouceBundleConstants;
-import org.expense.spring.mvc.javabeans.Location;
 import org.expense.spring.mvc.javabeans.RegistrationFormBean;
 import org.expense.spring.mvc.model.EmailValidationJSON;
 import org.expense.spring.mvc.validator.EmailFieldValidator;
 import org.expense.spring.mvc.validator.RegistrationFormBeanValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
@@ -37,8 +34,11 @@ public class RegisterationController {
 	protected String GET_LOCATIONS = "SELECT LOCATION FROM LOCATION";
 	protected String GET_LOCATION_ID = "SELECT LOCATION_ID FROM LOCATION WHERE LOCATION=?";
 
-//	@Autowired
-	private MyJdbcDao jdbcDao;
+	@Autowired
+	private LocationDao locationDao;
+	
+	@Autowired
+	private UserDao userDao;
 	
 	@Autowired
 	private RegistrationFormBeanValidator registrationFormBeanValidator;
@@ -51,44 +51,30 @@ public class RegisterationController {
 	
 	@RequestMapping("/register")
 	public String openRegistrationPage(Model model){
-		model.addAttribute("locations", getLocation());
+		model.addAttribute("locations", locationDao.getLocations());
 		model.addAttribute(new RegistrationFormBean());
 		return "createAccount";
 	}
 
-	public List<Location> getLocation() {
-		JdbcTemplate jdbcTemplate = jdbcDao.getJdbcTemplate();
-		List<Location> locations = jdbcTemplate.query(GET_LOCATIONS, ParameterizedBeanPropertyRowMapper.newInstance(Location.class));
-		return locations;
-	}
-	
 	@RequestMapping(value="/processRegistration", method=RequestMethod.POST)
 	public String processRegistration(@Valid RegistrationFormBean registrationFormBean, BindingResult result
 			, Model model){
 		registrationFormBeanValidator.validate(registrationFormBean, result);
 
 		if (result.hasErrors()) {
-			model.addAttribute("locations", getLocation());
+			model.addAttribute("locations", locationDao.getLocations());
 			return "createAccount";
 		}
-		
 		insertUserDetails(registrationFormBean);
 		return "redirect:/home";
 	}
 
 	private void insertUserDetails(RegistrationFormBean registrationFormBean) {
-		JdbcTemplate jdbcTemplate = jdbcDao.getJdbcTemplate();
-		int rowUpdate = jdbcTemplate.update(INSERT_CREDENTIAL, registrationFormBean.getEmail(),
-				registrationFormBean.getPassword());
+		int rowUpdate = userDao.insertCredentials(registrationFormBean.getEmail(), registrationFormBean.getPassword());
 		if (rowUpdate > 0) {
-			Integer id = jdbcTemplate.queryForObject(GET_USER_ID,
-					Integer.class, registrationFormBean.getEmail());
-			Integer location_id = jdbcTemplate.queryForObject(
-					GET_LOCATION_ID, Integer.class,
-					registrationFormBean.getLocation());
-			jdbcTemplate.update(UPDATE_DETAILS, registrationFormBean.getFirstName(), registrationFormBean.getLastName(),
-					registrationFormBean.getGender(),
-					location_id, id);
+			Integer id = userDao.getUserID(registrationFormBean.getEmail());
+			Integer location_id = locationDao.getLocationID(registrationFormBean.getLocation());
+			userDao.insertUserDetails(registrationFormBean, location_id, id);
 		}
 	}
 	
@@ -108,9 +94,7 @@ public class RegisterationController {
 			return new EmailValidationJSON(false, getErrorMessage(errors.getFieldError("email").getCode()));
 		}
 		
-		JdbcTemplate jdbcTemplate = jdbcDao.getJdbcTemplate();
-		Integer count = jdbcTemplate.queryForObject(CHECK_EMAIL,
-				Integer.class, email);
+		Integer count = userDao.checkEmailAvailability(email);
 		if (count > 0) {
 			return new EmailValidationJSON(false, 
 					getErrorMessage(MessageResouceBundleConstants.VALIDATION_EMAIL_REGISTERED));
