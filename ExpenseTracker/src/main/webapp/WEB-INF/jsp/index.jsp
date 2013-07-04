@@ -33,19 +33,19 @@
 				<span>Sign in</span> <img
 					src="<c:url value="/resources/image/38px-Gold_Currency_Symbols.svg.png" />" width="20" />
 			</div>
-			<form:form id="loginForm" action="logon" method="post" modelAttribute="logonBean">
+			<form:form id="loginForm" action="ExpenseTracker/j_spring_security_check" method="post">
 				<div class="loginBox">
 					<div class="loginField">Email</div>
-					<div><form:errors path="email" cssClass="error"/></div>
 					<div>
-						<form:input path="email" cssClass="textField"/>
+<%-- 						<form:input path="j_username" cssClass="textField"/> --%>
+						<INPUT name="j_username" class="textField" type="text"/>
 					</div>
 				</div>
 				<div class="loginBox">
 					<div class="loginField">Password</div>
-					<div><form:errors path="password" cssClass="error"/></div>
 					<div>
-						<form:input path="password" type="password" cssClass="textField"/>
+<%-- 						<form:input path="j_password" type="password" cssClass="textField"/> --%>
+						<INPUT name="j_password" class="textField" type="password"/>
 					</div>
 				</div>
 				<div class="error">${errorMsg}</div>
