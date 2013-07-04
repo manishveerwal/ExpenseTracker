@@ -6,7 +6,7 @@
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/**" access="permitAll" />
 		<form-login login-processing-url="/j_spring_security_check" login-page="/home" 
-		authentication-failure-url="/home?errorMsg=Invalid username password." 
+		authentication-failure-url="/logonFailure" 
 			default-target-url="/dashboard" always-use-default-target="true"/>
 	</http>
 	

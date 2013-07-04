@@ -12,9 +12,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+@Deprecated
 @Controller
 public class LogonController {
 
+	//No longer needed as using spring security for authentication
+	
 	@Autowired
 	private UserDao userDao;
 	
